@@ -1,0 +1,876 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mawariska Kartika Putri — Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --teal: #1A6B5F;
+    --teal-mid: #2A9D8F;
+    --teal-light: #E8F4F1;
+    --teal-pale: #F2FAF8;
+    --dark: #111917;
+    --mid: #4A5550;
+    --light: #8FA89F;
+    --cream: #FAFAF8;
+    --white: #FFFFFF;
+    --border: #E2EDEA;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--dark);
+    font-size: 16px;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 1.25rem 4rem;
+    background: rgba(250,250,248,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-logo {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.1rem;
+    color: var(--teal);
+    letter-spacing: 0.01em;
+  }
+  .nav-links { display: flex; gap: 2.5rem; }
+  .nav-links a {
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--mid);
+    text-decoration: none;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--teal); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding: 0 4rem;
+    padding-top: 80px;
+    gap: 4rem;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    right: -10%;
+    top: 10%;
+    width: 600px; height: 600px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(42,157,143,0.08) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-eyebrow {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-size: 0.8rem; font-weight: 500; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--teal);
+    margin-bottom: 1.5rem;
+  }
+  .hero-eyebrow::before {
+    content: ''; display: block;
+    width: 32px; height: 1px; background: var(--teal);
+  }
+  .hero-name {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(2.8rem, 5vw, 4.2rem);
+    line-height: 1.05;
+    color: var(--dark);
+    margin-bottom: 1rem;
+  }
+  .hero-name em {
+    font-style: italic;
+    color: var(--teal);
+  }
+  .hero-tagline {
+    font-size: 1.1rem;
+    color: var(--mid);
+    font-weight: 300;
+    max-width: 480px;
+    margin-bottom: 2.5rem;
+    line-height: 1.7;
+  }
+  .hero-cta {
+    display: flex; gap: 1rem; flex-wrap: wrap;
+  }
+  .btn-primary {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 0.85rem 2rem;
+    background: var(--teal);
+    color: white;
+    border-radius: 40px;
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: background 0.2s, transform 0.2s;
+  }
+  .btn-primary:hover { background: #145249; transform: translateY(-1px); }
+  .btn-outline {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 0.85rem 2rem;
+    border: 1.5px solid var(--teal);
+    color: var(--teal);
+    border-radius: 40px;
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: all 0.2s;
+  }
+  .btn-outline:hover { background: var(--teal-light); transform: translateY(-1px); }
+
+  .hero-right {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    align-items: flex-end;
+  }
+  .hero-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    width: 100%;
+    max-width: 400px;
+  }
+  .stat-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 1.5rem;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .stat-card:hover { transform: translateY(-3px); box-shadow: 0 12px 32px rgba(26,107,95,0.1); }
+  .stat-card:first-child {
+    grid-column: span 2;
+    background: var(--teal);
+    color: white;
+    border-color: var(--teal);
+    display: flex; align-items: center; gap: 1.5rem;
+  }
+  .stat-num {
+    font-family: 'DM Serif Display', serif;
+    font-size: 2.8rem;
+    line-height: 1;
+    color: var(--teal);
+  }
+  .stat-card:first-child .stat-num { color: white; font-size: 3.2rem; }
+  .stat-label { font-size: 0.8rem; color: var(--mid); margin-top: 4px; font-weight: 400; }
+  .stat-card:first-child .stat-label { color: rgba(255,255,255,0.75); }
+
+  /* SECTION COMMON */
+  section { padding: 6rem 4rem; }
+  .section-tag {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-size: 0.75rem; font-weight: 500; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--teal);
+    margin-bottom: 1rem;
+  }
+  .section-tag::before {
+    content: ''; display: block;
+    width: 24px; height: 1px; background: var(--teal);
+  }
+  .section-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(2rem, 3.5vw, 3rem);
+    line-height: 1.1;
+    color: var(--dark);
+    margin-bottom: 1rem;
+  }
+  .section-sub {
+    font-size: 1rem;
+    color: var(--mid);
+    font-weight: 300;
+    max-width: 560px;
+    margin-bottom: 3rem;
+  }
+
+  /* ABOUT */
+  .about { background: var(--white); }
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: start;
+  }
+  .about-text p {
+    color: var(--mid);
+    font-weight: 300;
+    line-height: 1.8;
+    margin-bottom: 1.25rem;
+    font-size: 1.05rem;
+  }
+  .about-text p strong { color: var(--dark); font-weight: 500; }
+  .values-list {
+    display: flex; flex-direction: column; gap: 1rem;
+  }
+  .value-item {
+    display: flex; gap: 1rem; align-items: flex-start;
+    padding: 1.25rem;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    transition: border-color 0.2s, background 0.2s;
+  }
+  .value-item:hover { border-color: var(--teal-mid); background: var(--teal-pale); }
+  .value-icon {
+    width: 36px; height: 36px; border-radius: 8px;
+    background: var(--teal-light);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1rem; flex-shrink: 0;
+  }
+  .value-title { font-weight: 500; font-size: 0.95rem; margin-bottom: 2px; }
+  .value-desc { font-size: 0.85rem; color: var(--mid); }
+
+  /* EXPERIENCE TIMELINE */
+  .experience { background: var(--cream); }
+  .timeline {
+    position: relative;
+    padding-left: 2rem;
+  }
+  .timeline::before {
+    content: '';
+    position: absolute; left: 0; top: 8px; bottom: 8px;
+    width: 1px;
+    background: linear-gradient(to bottom, var(--teal), transparent);
+  }
+  .timeline-item {
+    position: relative;
+    padding-left: 2.5rem;
+    padding-bottom: 3rem;
+  }
+  .timeline-item:last-child { padding-bottom: 0; }
+  .timeline-dot {
+    position: absolute;
+    left: -2rem;
+    top: 6px;
+    width: 12px; height: 12px;
+    border-radius: 50%;
+    background: var(--white);
+    border: 2px solid var(--teal);
+    transition: background 0.2s;
+  }
+  .timeline-item:hover .timeline-dot { background: var(--teal); }
+  .timeline-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 1.75rem 2rem;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .timeline-item:hover .timeline-card {
+    transform: translateX(4px);
+    box-shadow: 0 8px 24px rgba(26,107,95,0.08);
+  }
+  .timeline-header {
+    display: flex; justify-content: space-between;
+    align-items: flex-start; flex-wrap: wrap; gap: 0.5rem;
+    margin-bottom: 0.5rem;
+  }
+  .timeline-role {
+    font-size: 1.1rem; font-weight: 500; color: var(--dark);
+  }
+  .timeline-period {
+    font-size: 0.8rem; color: var(--light);
+    background: var(--teal-light);
+    padding: 3px 10px; border-radius: 20px;
+    color: var(--teal); font-weight: 500;
+  }
+  .timeline-company {
+    font-size: 0.9rem; color: var(--teal);
+    font-weight: 500; margin-bottom: 1rem;
+  }
+  .timeline-bullets {
+    list-style: none;
+    display: flex; flex-direction: column; gap: 6px;
+  }
+  .timeline-bullets li {
+    font-size: 0.9rem; color: var(--mid);
+    display: flex; gap: 10px; align-items: flex-start;
+    font-weight: 300;
+  }
+  .timeline-bullets li::before {
+    content: '→';
+    color: var(--teal-mid);
+    font-size: 0.85rem;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+  .timeline-tags {
+    display: flex; flex-wrap: wrap; gap: 6px; margin-top: 1rem;
+  }
+  .tag {
+    font-size: 0.75rem;
+    padding: 3px 10px;
+    border-radius: 20px;
+    background: var(--teal-pale);
+    color: var(--teal);
+    border: 1px solid var(--border);
+  }
+
+  /* SKILLS */
+  .skills { background: var(--white); }
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+  .skill-group {
+    background: var(--cream);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 1.75rem;
+    transition: transform 0.2s;
+  }
+  .skill-group:hover { transform: translateY(-4px); }
+  .skill-group-title {
+    font-weight: 500;
+    font-size: 0.9rem;
+    color: var(--dark);
+    margin-bottom: 1rem;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .skill-group-title span {
+    display: inline-block;
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--teal);
+  }
+  .skill-items {
+    display: flex; flex-wrap: wrap; gap: 6px;
+  }
+  .skill-pill {
+    font-size: 0.8rem;
+    padding: 4px 12px;
+    border-radius: 20px;
+    background: var(--white);
+    border: 1px solid var(--border);
+    color: var(--mid);
+  }
+
+  /* CASE STUDIES */
+  .casestudies { background: var(--teal); }
+  .casestudies .section-title { color: white; }
+  .casestudies .section-tag { color: rgba(255,255,255,0.6); }
+  .casestudies .section-tag::before { background: rgba(255,255,255,0.4); }
+  .casestudies .section-sub { color: rgba(255,255,255,0.7); }
+  .cases-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+  .case-card {
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 16px;
+    padding: 2rem;
+    transition: background 0.2s, transform 0.2s;
+    cursor: default;
+  }
+  .case-card:hover { background: rgba(255,255,255,0.14); transform: translateY(-4px); }
+  .case-num {
+    font-family: 'DM Serif Display', serif;
+    font-size: 3rem;
+    color: rgba(255,255,255,0.15);
+    line-height: 1;
+    margin-bottom: 1rem;
+  }
+  .case-title {
+    font-weight: 500;
+    font-size: 1rem;
+    color: white;
+    margin-bottom: 0.75rem;
+  }
+  .case-desc {
+    font-size: 0.875rem;
+    color: rgba(255,255,255,0.65);
+    line-height: 1.7;
+    font-weight: 300;
+    margin-bottom: 1.25rem;
+  }
+  .case-result {
+    font-size: 0.8rem;
+    color: #5DCAA5;
+    font-weight: 500;
+    display: flex; align-items: center; gap: 6px;
+  }
+  .case-result::before { content: '✦'; font-size: 0.7rem; }
+
+  /* ACHIEVEMENTS */
+  .achievements { background: var(--cream); }
+  .ach-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.25rem;
+  }
+  .ach-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 1.75rem;
+    display: flex; gap: 1.25rem; align-items: flex-start;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .ach-card:hover { transform: translateY(-3px); box-shadow: 0 12px 32px rgba(26,107,95,0.08); }
+  .ach-year {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.8rem;
+    color: var(--teal-mid);
+    line-height: 1;
+    flex-shrink: 0;
+    min-width: 56px;
+  }
+  .ach-title { font-weight: 500; font-size: 0.95rem; margin-bottom: 4px; }
+  .ach-desc { font-size: 0.85rem; color: var(--mid); line-height: 1.6; }
+
+  /* CONTACT */
+  .contact {
+    background: var(--white);
+    text-align: center;
+  }
+  .contact .section-tag { justify-content: center; }
+  .contact .section-tag::before { display: none; }
+  .contact .section-title { text-align: center; }
+  .contact .section-sub { text-align: center; margin: 0 auto 2.5rem; }
+  .contact-links {
+    display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap;
+  }
+  .contact-item {
+    display: flex; align-items: center; gap: 8px;
+    padding: 0.85rem 1.75rem;
+    border: 1.5px solid var(--border);
+    border-radius: 40px;
+    text-decoration: none;
+    color: var(--mid);
+    font-size: 0.9rem;
+    font-weight: 400;
+    transition: all 0.2s;
+  }
+  .contact-item:hover { border-color: var(--teal); color: var(--teal); background: var(--teal-light); }
+  .contact-icon { font-size: 1rem; }
+
+  /* FOOTER */
+  footer {
+    padding: 2rem 4rem;
+    display: flex; justify-content: space-between; align-items: center;
+    border-top: 1px solid var(--border);
+    font-size: 0.8rem;
+    color: var(--light);
+  }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .hero-eyebrow { animation: fadeUp 0.6s ease both; }
+  .hero-name { animation: fadeUp 0.6s 0.1s ease both; }
+  .hero-tagline { animation: fadeUp 0.6s 0.2s ease both; }
+  .hero-cta { animation: fadeUp 0.6s 0.3s ease both; }
+  .hero-right { animation: fadeUp 0.6s 0.4s ease both; }
+
+  /* RESPONSIVE */
+  @media (max-width: 900px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { display: none; }
+    .hero { grid-template-columns: 1fr; padding: 6rem 1.5rem 3rem; }
+    .hero-right { align-items: flex-start; }
+    .hero-stats { max-width: 100%; }
+    section { padding: 4rem 1.5rem; }
+    .about-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+    .skills-grid { grid-template-columns: 1fr 1fr; }
+    .cases-grid { grid-template-columns: 1fr; }
+    .ach-grid { grid-template-columns: 1fr; }
+    footer { flex-direction: column; gap: 8px; text-align: center; padding: 1.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">Mawariska K.P.</div>
+  <div class="nav-links">
+    <a href="#about">About</a>
+    <a href="#experience">Experience</a>
+    <a href="#skills">Skills</a>
+    <a href="#work">Case Studies</a>
+    <a href="#contact">Contact</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-left">
+    <div class="hero-eyebrow">APAC Client Service & HR Operations</div>
+    <h1 class="hero-name">Mawariska<br><em>Kartika Putri</em></h1>
+    <p class="hero-tagline">I help global companies build and manage their teams across Southeast Asia — from compliant onboarding to seamless payroll operations and long-term client success.</p>
+    <div class="hero-cta">
+      <a href="#contact" class="btn-primary">Get in touch →</a>
+      <a href="#experience" class="btn-outline">View experience</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-stats">
+      <div class="stat-card">
+        <div>
+          <div class="stat-num">3+</div>
+          <div class="stat-label">Years in EOR & Client Service</div>
+        </div>
+        <div style="margin-left:auto; text-align:right;">
+          <div style="font-size:0.8rem; color:rgba(255,255,255,0.6); margin-bottom:4px;">Currently at</div>
+          <div style="font-size:0.9rem; color:white; font-weight:500;">Innovare Group</div>
+          <div style="font-size:0.75rem; color:rgba(255,255,255,0.45);">Headquartered in Singapore</div>
+          <div style="font-size:0.8rem; color:rgba(255,255,255,0.5);">Remote · APAC</div>
+        </div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">12+</div>
+        <div class="stat-label">Enterprise clients managed</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">60+</div>
+        <div class="stat-label">Consultants across APAC</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">90%</div>
+        <div class="stat-label">Client satisfaction rate</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="section-tag">About</div>
+  <div class="about-grid">
+    <div class="about-text">
+      <h2 class="section-title">The person<br>behind the work</h2>
+      <p>I'm a <strong>Client Service Executive</strong> based in Surabaya, Indonesia, specializing in Employer of Record (EOR) and HR operations across the APAC region — with deep expertise in <strong>Indonesia and Thailand</strong>.</p>
+      <p>Over the past 3+ years at Innovare Group (headquartered in Singapore), I've built and maintained relationships with 12+ enterprise clients, managing the full employment lifecycle for 60+ consultants — from contracts and onboarding to payroll compliance and offboarding.</p>
+      <p>Before moving into HR operations, I sharpened my client-facing skills in luxury hospitality at <strong>Shangri-La</strong> and e-commerce customer support. That diversity of experience is what makes me genuinely effective: I understand people, process, and precision equally well.</p>
+      <p>Fluent in <strong>English (C1)</strong> and native Bahasa Indonesia. Passionate about cross-cultural communication and building trust across borders.</p>
+    </div>
+    <div class="values-list">
+      <div class="value-item">
+        <div class="value-icon">🤝</div>
+        <div>
+          <div class="value-title">Relationships first</div>
+          <div class="value-desc">Long-term trust beats short-term wins. I invest in understanding every client's unique context.</div>
+        </div>
+      </div>
+      <div class="value-item">
+        <div class="value-icon">⚡</div>
+        <div>
+          <div class="value-title">Proactive, not reactive</div>
+          <div class="value-desc">The best client service is invisible — problems solved before they escalate.</div>
+        </div>
+      </div>
+      <div class="value-item">
+        <div class="value-icon">🌏</div>
+        <div>
+          <div class="value-title">Cross-cultural fluency</div>
+          <div class="value-desc">Understanding local nuance across Indonesia and Thailand isn't just knowledge — it's empathy.</div>
+        </div>
+      </div>
+      <div class="value-item">
+        <div class="value-icon">📐</div>
+        <div>
+          <div class="value-title">Precision in operations</div>
+          <div class="value-desc">Payroll and compliance leave no room for error. Detail-orientation is non-negotiable.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section class="experience" id="experience">
+  <div class="section-tag">Experience</div>
+  <h2 class="section-title">Career journey</h2>
+  <p class="section-sub">3+ years across EOR operations, customer success, luxury sales, and hospitality.</p>
+
+  <div class="timeline">
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-card">
+        <div class="timeline-header">
+          <div class="timeline-role">Client Service Executive</div>
+          <div class="timeline-period">Jul 2022 – Present</div>
+        </div>
+        <div class="timeline-company">Innovare Group · Headquartered in Singapore · Remote, Jakarta</div>
+        <ul class="timeline-bullets">
+          <li>Manage end-to-end EOR & HR operations for 12+ enterprise clients across Indonesia and Thailand</li>
+          <li>Oversee the full employment lifecycle for 60+ consultants — onboarding, contracts, payroll, compliance, and offboarding</li>
+          <li>Serve as primary point of contact for all accounts, maintaining consistently high client satisfaction and retention</li>
+          <li>Navigate complex, multi-jurisdiction labor law requirements across APAC markets</li>
+          <li>Collaborate with sales and marketing teams to identify upsell opportunities and drive business growth</li>
+        </ul>
+        <div class="timeline-tags">
+          <span class="tag">EOR Operations</span>
+          <span class="tag">HR Compliance</span>
+          <span class="tag">Payroll</span>
+          <span class="tag">Client Retention</span>
+          <span class="tag">Indonesia & Thailand Law</span>
+          <span class="tag">Talenta HRIS</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-card">
+        <div class="timeline-header">
+          <div class="timeline-role">Customer Support Agent</div>
+          <div class="timeline-period">Sep 2021 – Jul 2022</div>
+        </div>
+        <div class="timeline-company">PT Miniletics Inspirasi Nusantara · Surabaya</div>
+        <ul class="timeline-bullets">
+          <li>Handled 50+ daily inquiries across Shopee, Lazada, and Tokopedia with swift and accurate resolutions</li>
+          <li>Achieved 90% customer satisfaction score through structured problem-solving and proactive follow-up</li>
+          <li>Managed escalations, technical troubleshooting, and post-sale support end-to-end</li>
+        </ul>
+        <div class="timeline-tags">
+          <span class="tag">Customer Success</span>
+          <span class="tag">E-commerce</span>
+          <span class="tag">Escalation Management</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-card">
+        <div class="timeline-header">
+          <div class="timeline-role">Sales Consultant</div>
+          <div class="timeline-period">Apr 2021 – Sep 2021</div>
+        </div>
+        <div class="timeline-company">PT Accor Advantage Plus · Surabaya</div>
+        <ul class="timeline-bullets">
+          <li>Drove luxury membership sales for Accor Hotels across Asia Pacific, consistently meeting targets</li>
+          <li>Contributed to a 10% improvement in team performance through refined pitch strategies</li>
+        </ul>
+        <div class="timeline-tags">
+          <span class="tag">Luxury Sales</span>
+          <span class="tag">Negotiation</span>
+          <span class="tag">Upselling</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-card">
+        <div class="timeline-header">
+          <div class="timeline-role">Guest Relations Officer (Intern)</div>
+          <div class="timeline-period">Oct 2019 – Apr 2020</div>
+        </div>
+        <div class="timeline-company">Shangri-La Hotel · Surabaya</div>
+        <ul class="timeline-bullets">
+          <li>Delivered personalized experiences at a 5-star property, earning consistent TripAdvisor praise</li>
+          <li>Managed front office operations including check-in, check-out, and guest requests</li>
+        </ul>
+        <div class="timeline-tags">
+          <span class="tag">Hospitality</span>
+          <span class="tag">Guest Relations</span>
+          <span class="tag">Front Office</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section class="skills" id="skills">
+  <div class="section-tag">Skills</div>
+  <h2 class="section-title">What I bring</h2>
+  <p class="section-sub">A combination of operational depth, people skills, and regional expertise.</p>
+  <div class="skills-grid">
+    <div class="skill-group">
+      <div class="skill-group-title"><span></span>HR & EOR Operations</div>
+      <div class="skill-items">
+        <span class="skill-pill">Employer of Record</span>
+        <span class="skill-pill">Payroll Management</span>
+        <span class="skill-pill">Labour Law (ID & TH)</span>
+        <span class="skill-pill">Employee Onboarding</span>
+        <span class="skill-pill">Contract Management</span>
+        <span class="skill-pill">Workforce Management</span>
+        <span class="skill-pill">Compliance</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <div class="skill-group-title"><span></span>Client Management</div>
+      <div class="skill-items">
+        <span class="skill-pill">Account Management</span>
+        <span class="skill-pill">Client Retention</span>
+        <span class="skill-pill">Escalation Handling</span>
+        <span class="skill-pill">Upselling</span>
+        <span class="skill-pill">Negotiation</span>
+        <span class="skill-pill">Cross-cultural Comms</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <div class="skill-group-title"><span></span>Tools & Platforms</div>
+      <div class="skill-items">
+        <span class="skill-pill">Talenta HRIS</span>
+        <span class="skill-pill">Jubelio ERP</span>
+        <span class="skill-pill">Genie ERP</span>
+        <span class="skill-pill">Google Suite</span>
+        <span class="skill-pill">Microsoft Office</span>
+        <span class="skill-pill">Shopee · Lazada · Tokopedia</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <div class="skill-group-title"><span></span>Languages</div>
+      <div class="skill-items">
+        <span class="skill-pill">English — C1 Fluent</span>
+        <span class="skill-pill">Bahasa Indonesia — Native</span>
+      </div>
+    </div>
+    <div class="skill-group" style="grid-column: span 2;">
+      <div class="skill-group-title"><span></span>Certifications</div>
+      <div class="skill-items">
+        <span class="skill-pill">HRCI Human Resource Associate · 2023</span>
+        <span class="skill-pill">HR Generalist · Manajemen SDM · 2024</span>
+        <span class="skill-pill">Customer Service: Problem-Solving · NASBA · 2023</span>
+        <span class="skill-pill">Shangri-La Front Office OJT · 2019</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CASE STUDIES -->
+<section class="casestudies" id="work">
+  <div class="section-tag">Case Studies</div>
+  <h2 class="section-title">Work that made<br>a difference</h2>
+  <p class="section-sub">Real challenges, real solutions — from the work I do every day.</p>
+  <div class="cases-grid">
+    <div class="case-card">
+      <div class="case-num">01</div>
+      <div class="case-title">Scaling EOR operations across Indonesia & Thailand</div>
+      <div class="case-desc">Managed the full onboarding and compliance process for a growing portfolio of 60+ consultants across two countries with different labor frameworks — ensuring zero compliance gaps.</div>
+      <div class="case-result">Zero compliance incidents across 60+ consultant contracts</div>
+    </div>
+    <div class="case-card">
+      <div class="case-num">02</div>
+      <div class="case-title">Building 90% satisfaction across 12+ enterprise accounts</div>
+      <div class="case-desc">As the sole point of contact for 12+ global clients, developed a proactive communication cadence that reduced escalations and maintained consistently high satisfaction scores.</div>
+      <div class="case-result">90%+ client satisfaction maintained over 3 years</div>
+    </div>
+    <div class="case-card">
+      <div class="case-num">03</div>
+      <div class="case-title">From 50+ daily tickets to streamlined e-commerce support</div>
+      <div class="case-desc">Built structured resolution frameworks for a high-volume e-commerce support role — turning chaotic multi-platform inquiries into a repeatable, measurable process.</div>
+      <div class="case-result">90% CSAT from previously untracked customer feedback</div>
+    </div>
+  </div>
+</section>
+
+<!-- ACHIEVEMENTS -->
+<section class="achievements" id="achievements">
+  <div class="section-tag">Beyond Work</div>
+  <h2 class="section-title">Notable achievements</h2>
+  <p class="section-sub">Moments that shaped who I am as a professional.</p>
+  <div class="ach-grid">
+    <div class="ach-card">
+      <div class="ach-year">2021</div>
+      <div>
+        <div class="ach-title">Youth Mentor — Girls Takeover, Plan Indonesia</div>
+        <div class="ach-desc">Mentored the top 35 finalists in a national girls' leadership program, in collaboration with BUMN and Plan Indonesia. Coordinated all facilitation and participant support.</div>
+      </div>
+    </div>
+    <div class="ach-card">
+      <div class="ach-year">2019</div>
+      <div>
+        <div class="ach-title">Youth Inspirational Speaker — National Children's Day</div>
+        <div class="ach-desc">Invited as keynote youth speaker by Gugah Nurani Indonesia to speak at Forum Anak Surabaya, encouraging young people to understand their rights and build self-confidence.</div>
+      </div>
+    </div>
+    <div class="ach-card">
+      <div class="ach-year">2017</div>
+      <div>
+        <div class="ach-title">Delegation of Indonesia — International Women's Day, Bangkok</div>
+        <div class="ach-desc">Selected to represent Indonesia at Plan International's International Women's Day celebration in Bangkok, Thailand — one of the youngest delegates from the country.</div>
+      </div>
+    </div>
+    <div class="ach-card">
+      <div class="ach-year">2016</div>
+      <div>
+        <div class="ach-title">National Winner — Video Blog Competition & "Minister for A Day"</div>
+        <div class="ach-desc">Won a national video blog competition and was appointed "Minister for A Day" at the Ministry of Labor in Jakarta, gaining first-hand insight into national policymaking.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="section-tag">Contact</div>
+  <h2 class="section-title">Let's connect</h2>
+  <p class="section-sub">Open to opportunities in Client Service, Account Management, or HR Operations — ideally with a regional or global scope.</p>
+  <div class="contact-links">
+    <a href="mailto:contact.mawariska@gmail.com" class="contact-item">
+      <span class="contact-icon">✉</span> contact.mawariska@gmail.com
+    </a>
+    <a href="https://linkedin.com/in/mawariska-kartika" target="_blank" class="contact-item">
+      <span class="contact-icon">in</span> linkedin.com/in/mawariska-kartika
+    </a>
+    <a href="tel:+628569039887" class="contact-item">
+      <span class="contact-icon">☎</span> +62 856-9039-887
+    </a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div>© 2025 Mawariska Kartika Putri</div>
+  <div>Surabaya, Indonesia · Open to remote & regional roles</div>
+</footer>
+
+<script>
+  // Smooth scroll active nav
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.nav-links a');
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(s => {
+      if (window.scrollY >= s.offsetTop - 120) current = s.getAttribute('id');
+    });
+    navLinks.forEach(a => {
+      a.style.color = a.getAttribute('href') === '#' + current ? '#1A6B5F' : '';
+    });
+  });
+
+  // Scroll reveal
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.style.opacity = '1';
+        e.target.style.transform = 'translateY(0)';
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.timeline-card, .skill-group, .case-card, .ach-card, .value-item, .stat-card').forEach(el => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(20px)';
+    el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+    observer.observe(el);
+  });
+</script>
+</body>
+</html>
